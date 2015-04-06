@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="dropzone.css">
+    <script src="dropzone.js"></script>
+    <link href="bootstrap.css" rel="stylesheet">
+<link href="bootstrap-switch.css" rel="stylesheet">
+<script src="jquery.js"></script>
+<script src="bootstrap-switch.js"></script>
+</head>
+ 
+<title>Plupload - Getting Started</title>
+
+<body>
+   
+    
+    <div class="row">
+<!--        image uploader-->
+        <div class="col-5">
+            <form action="/file-upload"
+              class="dropzone row"
+              id="image-dropzone" ></form>
+              <br></br>        
+        </div>
+        
+<!--        text file uploader-->
+        <div class="col-5">
+            <form action="/file-upload"
+              class="dropzone row"
+              id="text-dropzone" ></form>
+              <br></br>        
+        </div>
+    
+    <div class="row">
+           
+            <span class="btn btn-success col-5" id="upload_button">Upload</span>
+            <span class="btn btn-danger col-5">Cancel</span>
+
+    </div>
+    
+    
+    
+
+
+    
+    
+<!--
+    <script type="text/javascript">
+    
+//  show the uploaded images and text files when user click the upload button    
+    function show() { 
+            document.getElementById("image_checkbox").style.display="block";
+            document.getElementById("text_checkbox").style.display="block";
+        }
+            
+    </script>
+-->
+
+   
+       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

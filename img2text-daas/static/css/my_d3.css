@@ -1,0 +1,53 @@
+
+#img_tooltip {
+        position: absolute;
+        pointer-events: none;
+}
+
+#img_tooltip.hidden {
+        display: none;
+}
+
+#txt_tooltip {
+		position: absolute;
+        pointer-events: none;
+        font-family: sans-serif;
+        font-size: 35px;
+        font-weight: bold;
+}
+
+#txt_tooltip.hidden {
+        display: none;
+}
+
+#txt_tooltip p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all; 
+}
+
+.tbl_container {
+    height: 250px;
+    overflow: auto;
+}
+
+#header{
+    background-color: #004890;
+    color: white;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+}
+
+h1 {
+    padding-left: 10px;
+}
+
+
+
+

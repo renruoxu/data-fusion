@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script type="text/javascript" src="../static/js/d3.js" charset="utf-8"></script>
+	<script type="text/javascript" src="../static/js/jquery-2.1.1.js"></script>
+	<link rel="stylesheet" type="text/css" href="../static/css/my_d3.css">
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var w = 1000,
+				h = 700;
+
+			var padding = 40;
+
+			var img_data = [{"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/frog2.jpeg", "x": 16.785692974820741, "y": -4.6384899202108629}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/truck5.jpeg", "x": -21.393605176513368, "y": 42.259173529834037}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird5.jpeg", "x": 18.774917430384559, "y": 0.42490374500510159}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog7.jpeg", "x": 21.223610087428469, "y": -35.308919454942846}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/truck1.jpeg", "x": -15.139674022671965, "y": 45.825105529776316}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer5.jpeg", "x": 29.02509205000926, "y": -15.054901875403111}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer6.jpeg", "x": -18.82742143340316, "y": 43.673027728133953}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse4.jpeg", "x": 21.280382535050411, "y": -17.891977271434506}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer3.jpeg", "x": -6.2959711248886547, "y": 3.7052625850650185}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse8.jpeg", "x": 21.907230021039716, "y": -2.1410794825070929}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird1.jpeg", "x": -11.643469771603996, "y": 9.6354516863511197}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane3.jpeg", "x": -23.098472783476787, "y": 33.106889145752511}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer1.jpeg", "x": -17.360576916798468, "y": 42.807459720787961}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer3.jpeg", "x": -31.582305093815123, "y": 28.749219975648398}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer6.jpeg", "x": 36.341007026101948, "y": -8.1039917825430638}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane10.jpeg", "x": -25.238766256328756, "y": 5.5574118785836024}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog2.jpg", "x": 35.667081851679029, "y": -34.020929294486862}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane7.jpeg", "x": -8.3838098727871042, "y": 9.1400741695589929}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog3.jpg", "x": 6.2565296396434498, "y": -18.362679558072827}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse5.jpeg", "x": 17.819381310716373, "y": -16.473339893177268}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/frog6.jpeg", "x": 15.012309325328156, "y": -5.4720965743323715}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane9.jpeg", "x": -20.81957939950512, "y": 33.339973026533976}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer8.jpeg", "x": 35.481178503113554, "y": -12.925653656459843}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer5.jpeg", "x": -19.171327000331885, "y": 42.427761975296548}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird3.jpeg", "x": 24.067372966729181, "y": 5.4144211803999571}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile10.jpeg", "x": -37.988846459575186, "y": 22.408697107056835}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/tiger3.jpeg", "x": 25.41916704945065, "y": -39.8648045384695}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/frog3.jpeg", "x": -28.072439658979263, "y": -1.6351340890294612}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane5.jpeg", "x": -9.8866581417581774, "y": 8.4116624542305356}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog8.jpeg", "x": 23.985322603772808, "y": 9.5938747411684808}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/truck6.jpeg", "x": -6.8277767102381466, "y": 45.082635500323455}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer9.jpeg", "x": -27.28240823308548, "y": 26.616516187592474}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/tiger8.jpeg", "x": 22.052508807575386, "y": -29.8075039453507}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane2.jpeg", "x": -15.618451403583109, "y": 14.005137589242223}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/frog7.jpeg", "x": -13.819327828128911, "y": 31.001208398288977}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer8.jpeg", "x": -24.345215757508992, "y": 27.865294052778399}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer2.jpeg", "x": -25.870859200492692, "y": 27.736571196874742}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat1.jpg", "x": 10.284156372049281, "y": -23.416002490723663}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/frog9.jpeg", "x": -17.058108410052327, "y": 15.225562158664687}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile2.jpeg", "x": -38.279556553895361, "y": 19.650350827539068}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/tiger4.jpeg", "x": 26.865267332396442, "y": -38.708958238251668}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat5.jpeg", "x": 24.869708593439992, "y": -18.331781784375071}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/truck7.jpeg", "x": -7.7248860204654131, "y": 46.17393264751847}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/ship6.jpeg", "x": -28.162954591724361, "y": 2.3932242794616574}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat8.jpeg", "x": 9.1635900312404761, "y": -23.89693080987864}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile7.jpeg", "x": -30.739975814601344, "y": 28.072049625735566}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird6.jpeg", "x": 22.198580747437116, "y": 6.6373620409768685}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse1.jpeg", "x": 16.330109751970951, "y": -15.331918046847941}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog5.jpg", "x": 21.710632919436367, "y": -36.643838869622208}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane8.jpeg", "x": -14.98389256678378, "y": 13.328673336205329}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane11.jpeg", "x": -7.0228994485033454, "y": 8.420154516044839}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/truck10.jpeg", "x": -3.8452574221275664, "y": 46.358718475778268}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile6.jpeg", "x": -40.684090877280035, "y": 23.238349816035321}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile1.jpeg", "x": -42.645445622130637, "y": 24.361615882144172}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse3.jpeg", "x": 35.581098357904963, "y": -15.654662509612956}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/tiger7.jpeg", "x": 24.141305845873603, "y": -27.475302804138568}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer4.jpeg", "x": -20.325459202586597, "y": 35.04673588233473}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat9.jpeg", "x": 24.268450337137207, "y": -15.548719749526823}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer10.jpeg", "x": 32.249686900039698, "y": -11.106151792353241}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/truck4.jpeg", "x": -7.0384577787398097, "y": 49.549187088433712}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse7.jpeg", "x": 31.09464143800696, "y": -10.828121268749118}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/tiger9.jpeg", "x": 24.4894150246637, "y": -32.392265883452794}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/tiger10.jpeg", "x": 25.175119170378867, "y": -38.576578965289414}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane4.jpeg", "x": -19.53425902369662, "y": 28.20304881997998}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog6.jpeg", "x": 15.521007973838424, "y": -24.558059339990017}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile8.jpeg", "x": -21.099061403150973, "y": 28.194138275657558}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/ship2.jpeg", "x": -31.178802856308412, "y": -3.295998462537983}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat7.jpeg", "x": 6.6428004605409328, "y": -24.313853701414029}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse10.jpeg", "x": 15.421012677709932, "y": -16.006717820587511}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer1.jpeg", "x": 17.15401118144468, "y": -6.9206633300715161}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/frog1.jpeg", "x": -14.484376821857516, "y": 31.844694146170479}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat10.jpeg", "x": 24.996945669187923, "y": -19.68361575899204}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird8.jpeg", "x": 21.126031725023715, "y": 1.4401619744502241}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/frog8.jpeg", "x": 8.1984372671427188, "y": -25.974442741838079}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat3.jpeg", "x": 23.208077096156501, "y": -17.765131254699103}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/tiger2.jpeg", "x": 21.017531255486098, "y": -31.098349161948835}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/ship9.jpeg", "x": -30.711641341234671, "y": 0.46429371609022585}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat6.jpeg", "x": 28.51517058728394, "y": -22.956274616289999}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile4.jpeg", "x": -38.702437558129745, "y": 23.534719922891064}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer4.jpeg", "x": 4.770869950334256, "y": -25.563948935370075}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird9.jpeg", "x": 20.1502001820689, "y": -0.84983064167802469}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat2.jpeg", "x": 7.1256745679006777, "y": -21.115457775628503}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog9.jpeg", "x": 31.120079775745559, "y": -41.08946412336725}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/ship4.jpeg", "x": -30.244670121977187, "y": -1.5298358173181923}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/frog10.jpeg", "x": 18.157896959367733, "y": -27.885012058267421}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane6.jpeg", "x": -19.850053193201902, "y": 31.545409435840757}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer2.jpeg", "x": 35.387358813782896, "y": -11.996377334452287}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile9.jpeg", "x": -40.141444892849371, "y": 20.893304954857602}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer9.jpeg", "x": 38.067354980335672, "y": -32.138918569326719}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse6.jpeg", "x": 19.215066803351299, "y": -18.92972896419711}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/airplane1.jpeg", "x": -9.9141405948940164, "y": 7.2874389965590298}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/deer7.jpeg", "x": 35.236457013509309, "y": -9.2481602339359412}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/cat4.jpeg", "x": 27.537977842404231, "y": -22.36387773344606}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile3.jpeg", "x": -27.007140322738739, "y": 29.354238492559052}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/truck3.jpeg", "x": -15.390680533612004, "y": 43.86245450207047}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog1.jpg", "x": 6.9754367756690803, "y": -20.038984281584824}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/ship3.jpeg", "x": -16.750209062807002, "y": 38.998145047303197}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer7.jpeg", "x": -18.314892884907021, "y": 37.179647021782721}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/ship5.jpeg", "x": -30.077278086172704, "y": 1.9193960239150094}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse2.jpeg", "x": 36.505521251973498, "y": -33.305771412325058}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/frog4.jpeg", "x": -12.713787325700666, "y": 32.990369812364214}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/ship10.jpeg", "x": -27.145795574457953, "y": 5.3513228372287838}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/tiger1.jpeg", "x": 26.122803647157792, "y": -33.3827692874112}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird4.jpeg", "x": 23.129276028736818, "y": 2.2951418744895649}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/truck2.jpeg", "x": -4.6216676702296597, "y": 47.464663788037434}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/ship1.jpeg", "x": -28.108409695477111, "y": 3.3497220726814576}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird7.jpeg", "x": 22.995443930857018, "y": 7.4038491192189673}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/tiger6.jpeg", "x": 29.908841123452547, "y": -41.071807306430436}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog4.jpeg", "x": 16.207050658382727, "y": -25.512214398303765}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird2.jpeg", "x": 19.092156599236883, "y": 2.6550601024571554}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/dog10.jpeg", "x": 19.401690086561526, "y": -28.877380671821026}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/bird10.jpeg", "x": 19.221741575688068, "y": -1.3686214602576658}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer11.jpeg", "x": -8.9229990119297877, "y": 4.4074012420723623}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/horse9.jpeg", "x": 32.71616257290033, "y": -42.154139540812913}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/truck9.jpeg", "x": -6.4317542425848586, "y": 47.259275377010525}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/computer10.jpeg", "x": -21.712883804531931, "y": 36.498461602308808}, {"url": "/home/ce/Desktop/Workspace/img_txt_query/examples/images/automobile5.jpeg", "x": -41.623301737770689, "y": 21.788149792134647}];
+			
+
+			var txt_data = [{"y": -19.983830261544654, "x": -21.694162631878758, "txt": "airplane", "label": "airplane"}, {"y": -21.723665314520336, "x": -21.646967254982577, "txt": "automobile", "label": "automobile"}, {"y": -19.199675230991993, "x": -13.323719457548863, "txt": "cat", "label": "cat"}, {"y": -18.375647821500628, "x": -11.415039742866796, "txt": "bird", "label": "bird"}, {"y": -18.577334580394776, "x": -21.149841719034995, "txt": "ship", "label": "ship"}, {"y": -19.207011727125177, "x": -10.15039779207488, "txt": "deer", "label": "deer"}, {"y": -20.419482039550683, "x": -13.200995059975448, "txt": "dog", "label": "dog"}, {"y": -20.944782384390486, "x": -10.82777281979563, "txt": "frog", "label": "frog"}, {"y": -20.10178792671628, "x": -15.365571165708412, "txt": "horse", "label": "horse"}, {"y": -21.184948207008723, "x": -20.45421618821387, "txt": "truck", "label": "truck"}, {"y": -17.305892114909316, "x": -13.943403394390083, "txt": "tiger", "label": "tiger"}, {"y": -15.795959739088662, "x": -15.334912496995319, "txt": "computer", "label": "computer"}];
+
+
+			var xScale = d3.scale.linear()
+							.domain([d3.min(img_data, function(d) { return d.x;}), 
+								d3.max(img_data, function(d) { return d.x;})])
+							.range([padding, w - padding]);
+			var yScale = d3.scale.linear()
+							.domain([d3.min(img_data, function(d) { return d.y;}), 
+								d3.max(img_data, function(d) { return d.y;})])
+							.range([padding, h - padding]);
+
+			var svgContainer = d3.select("body").append("svg")
+						.attr("width", w)
+						.attr("height", h)
+						.style("border", "3px solid #B8D3E5")
+						.append("g")
+    					.call(d3.behavior.zoom().x(xScale).y(yScale).scaleExtent([-1, 8]).on("zoom", zoom));
+
+    		svgContainer.append("rect") //this is necessary to enable the zoom
+					    .attr("class", "overlay")
+					    .attr("width", w)
+					    .attr("height", h);
+
+			var img_tooltip = d3.select("body").append("img")
+						.attr("id", "img_tooltip")
+						.attr("width", "400")
+						.attr("height", "300");
+
+			var txt_tooltip = d3.select("body").append("text")
+						.attr("id", "txt_tooltip")
+
+			var img_points = svgContainer.selectAll("image")
+						.data(img_data)
+						.enter()
+						.append("image")
+						// .attr("x", function (d) {return xScale(d.x);})
+						// .attr("y", function (d) {return yScale(d.y);})
+						.attr("xlink:href", function (d) {return d.url;})
+						.attr("width", "50px")
+						.attr("height", "50px")
+						.attr("transform", transform)
+						.on("mouseover", function (d) {
+							//get x/y values of the point
+							// var xPosition = parseFloat(d3.select(this).attr("x"));
+							// var yPosition = parseFloat(d3.select(this).attr("y"));
+							var xPosition = w + padding*2;
+							var yPosition = padding*2;
+							img_tooltip.style("left", xPosition + "px")
+							   .style("top", yPosition + "px")
+							   .attr("src", d.url)
+							   .classed("hidden", false);
+						})
+						.on("mouseout", function (d) {
+							img_tooltip.classed("hidden", true);
+						});
+
+			var txt_points = svgContainer.selectAll("text")
+							.data(txt_data)
+							.enter()
+							.append("text")
+							.text(function (d) {return d.label;})
+							.attr("text-anchor", "middle")
+							.attr("transform", transform)
+							.on("mouseover", function (d) {
+								var xPosition = w + padding*2;
+								var yPosition = padding*2;
+								txt_tooltip.style("left", xPosition + "px")
+										.style("top", yPosition + "px")
+										.text(d.txt)
+										.attr("text-anchor", "middle")
+										.classed("hidden", false);
+							})
+							.on("mouseout", function(){
+								txt_tooltip.classed("hidden", true);
+							});
+
+
+			function zoom() {
+				img_points.attr("transform", transform);
+				txt_points.attr("transform", transform);
+			}
+
+			function transform(d) {
+				return "translate(" + xScale(d.x) + "," + yScale(d.y) + ")";
+			}
+			
+		</script>
+	</body>
+</html>

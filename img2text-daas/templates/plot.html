@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script type="text/javascript" src="{{url_for('static', filename='js/d3.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='js/jquery-2.1.1.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='js/plot.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/my_d3.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/file_upload.css')}}">
+	</head>
+
+	<body>
+
+	<div class="container-fluid">
+		<div id="header" class="row">
+		<div class="col-md-8 column">
+            <h2>Image2Text</h2></div>
+            <div class="col-md-4 column">
+<!--                 <img src="static/img/RR_lg.png">
+ -->            </div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-2">
+				<form id="upload_form" method="post" enctype="multipart/form-data">
+        			<span class="fileUpload btn btn-success">
+          				<i class="glyphicon glyphicon-plus"></i>
+    					<span>Select Files...</span>
+    					<input name="file" type="file" id="file" class="upload" onChange="makeFileList();" multiple>
+					</span>
+					<br>
+			        <br>
+			        <h4 id="filesTxt" hidden="true"><strong>Files You Selected:</strong></h4>
+
+			        <div class="tbl_container">
+			   			<table id="fileList" class="table">
+			    		</table>
+			    	</div>
+			     	<br>
+
+         			<div id="btnUpdDiv" hidden="true">
+            		<button class="btn btn-primary" type="button" value="Upload" id="upload_button"><i class="glyphicon glyphicon-upload"></i> Upload & Analyze</button>
+        			</div>
+    			</form>
+
+<!-- <form id="upload_form" method="post" enctype="multipart/form-data">
+            <input name="file" type="file" id="file" multiple><br>
+      <input type="button" value="Upload" id="upload_button">
+</form>	 -->
+<br>			
+	    		<div id="uploading" hidden="true">
+	    			<img src="{{url_for('static', filename='img/ajax-loader.gif')}}">
+	    		</div>
+<br>
+	    		<div id="perp" hidden="true">
+					<label for="perplexity-selector">Perplexity</label>
+					<input type="range" min="0" max="40" value="10" step="1" id="perplexity-selector" oninput="perpUpdate(value)">
+					<output for="perplexity-selector" id="perp-value">10</output>
+					<br>
+					<button class="btn btn-primary" type="button" value="remap" id="perplexity-button">Remap</button>
+				</div>
+
+
+
+<!--            		<input type="button" id="query_btn" name="query" value="Query" class="btn btn-primary">
+ -->           		
+
+			</div>
+			
+			<div class="col-md-10" id="plot">
+
+			</div>
+			
+
+	</div>
+				
+					
+	</body>
+</html>

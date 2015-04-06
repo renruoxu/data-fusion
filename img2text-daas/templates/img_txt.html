@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<script src="../static/js/d3.js" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../static/css/my_d3.css">
+	</head>
+
+	<body>
+		<script type="text/javascript">
+			var w = 960,
+				h = 500;
+
+			var padding = 40;
+
+			var img_data = [
+			{
+			 "x": 290.3,
+			"y": -798.8,
+			"url": "../static/img/p.png" 
+			},
+			{
+			 "x": -825.38,
+			"y": -546.81,
+			"url": "../static/img/p.png" 
+			},
+			{
+			 "x": 59.183,
+			"y": 367.08,
+			"url": "../static/img/p.png" 
+			},
+			{
+			 "x": -82.846,
+			"y": 429.91,
+			"url": "../static/img/p.png" 
+			},
+			{
+			 "x": -52.5,
+			"y": 450.91,
+			"url": "../static/img/p.png" 
+			},
+			{
+			 "x": 652,
+			"y": 290,
+			"url": "../static/img/p.png" 
+			},
+			{
+			 "x": 352.5,
+			"y": 90.91,
+			"url": "../static/img/p.png" 
+			}
+			];
+
+			var txt_data = [
+			{
+				"x": 40,
+				"y": 300,
+				"label": "text1",
+				"txt": "there should be some text here, probably long text"
+			},
+			{	
+				"x": 400,
+				"y": 500,
+				"label": "text2",
+				"txt": "Another long and boring text will be placed here in the future"
+			}
+			];
+
+
+			var xScale = d3.scale.linear()
+							.domain([d3.min(img_data, function(d) { return d.x;}), 
+								d3.max(img_data, function(d) { return d.x;})])
+							.range([padding, w - padding]);
+			var yScale = d3.scale.linear()
+							.domain([d3.min(img_data, function(d) { return d.y;}), 
+								d3.max(img_data, function(d) { return d.y;})])
+							.range([padding, h - padding]);
+
+			var svgContainer = d3.select("body").append("svg")
+						.attr("width", w)
+						.attr("height", h)
+						.append("g")
+    					.call(d3.behavior.zoom().x(xScale).y(yScale).scaleExtent([-1, 8]).on("zoom", zoom));
+
+    		svgContainer.append("rect") //this is necessary to enable the zoom
+					    .attr("class", "overlay")
+					    .attr("width", w)
+					    .attr("height", h);
+
+			var img_div = d3.select("body").append("img")
+						.attr("id", "tooltip");
+
+
+			var img_points = svgContainer.selectAll("image")
+						.data(img_data)
+						.enter()
+						.append("image")
+						// .attr("x", function (d) {return xScale(d.x);})
+						// .attr("y", function (d) {return yScale(d.y);})
+						.attr("xlink:href", function (d) {return d.url;})
+						.attr("width", "30px")
+						.attr("height", "30px")
+						.attr("transform", transform)
+						.on("mouseover", function (d) {
+							//get x/y values of the point
+							// var xPosition = parseFloat(d3.select(this).attr("x"));
+							// var yPosition = parseFloat(d3.select(this).attr("y"));
+							var xPosition = w / 2;
+							var yPosition = h / 2;
+							img_div.style("left", xPosition + "px")
+							   .style("top", yPosition + "px")
+							   .attr("src", d.url)
+							   .classed("hidden", false);
+						})
+						.on("mouseout", function (d) {
+							img_div.classed("hidden", true);
+						});
+
+			var txt_points = svgContainer.selectAll("text")
+							.data(txt_data)
+							.enter()
+							.append("text")
+							.text(function (d) {return d.label;})
+							.attr("text-anchor", "middle")
+							.attr("transform", transform)
+							.on("mouseover", function (d) {
+								var xPosition = w / 2;
+								var yPosition = h / 2;
+								svgContainer.append("text")
+										.attr("id", "txt_tooltip")
+										.attr("x", xPosition)
+										.attr("y", yPosition)
+										.text(d.txt)
+										.attr("text-anchor", "middle");
+							})
+							.on("mouseout", function(){
+								d3.select("#txt_tooltip").remove();
+							});
+
+
+			function zoom() {
+				img_points.attr("transform", transform);
+				txt_points.attr("transform", transform);
+			}
+
+			function transform(d) {
+				return "translate(" + xScale(d.x) + "," + yScale(d.y) + ")";
+			}
+			
+		</script>
+	</body>
+</html>

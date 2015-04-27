@@ -1,0 +1,89 @@
+name: "Mapping"
+layer{
+  name: "Data"
+  type: "HDF5Data"
+  top: "data"
+  top: "label"
+  include{
+  phase: TRAIN
+  }
+  hdf5_data_param{
+  source: "/home/ruoxu/workspace/x/text-image-caffe/data/train.txt"
+  batch_size: 50
+  }
+}
+layer {
+  name: "data"
+  type: "HDF5Data"
+  top: "data"
+  top: "label"
+  include {
+  phase: TEST
+  }
+  hdf5_data_param {
+  source: "/home/ruoxu/workspace/x/text-image-caffe/data/val.txt"
+  batch_size: 5
+  }
+}
+layer{
+	name: "ip1"
+	type: "InnerProduct"
+	bottom: "data"
+	top: "ip1"
+	param{
+	lr_mult: 1.
+	decay_mult: 1.
+	}
+	param{
+	lr_mult: 2.
+	decay_mult: 0.
+	}
+	inner_product_param {
+	num_output: 200
+	weight_filler {
+	type: "xavier"
+	}
+	bias_filler {
+	type: "constant"
+	value: 0
+	}
+	}
+}
+
+layer {
+  name: "tanh1"
+  type: "TanH"
+  bottom: "ip1"
+  top: "tanh1"
+}
+layer {
+  name: "ip2"
+  type: "InnerProduct"
+  param{
+  lr_mult: 1.          # learning rate multiplier for the filters
+  decay_mult: 1.      # weight decay multiplier for the filters
+  }
+  param{
+  lr_mult: 2.          # learning rate multiplier for the biases 
+  decay_mult: 0.      # weight decay multiplier for the biases
+  }
+  inner_product_param {
+  num_output: 100
+  weight_filler {
+      type: "xavier"
+    }
+    bias_filler {
+      type: "constant"
+      value: 0
+    }
+  }
+  bottom: "tanh1"
+  top: "ip2"
+}
+layer {
+  name: "loss"
+  type: "EuclideanLoss"
+  bottom: "ip2"
+  bottom: "label"
+  top: "loss"
+}
